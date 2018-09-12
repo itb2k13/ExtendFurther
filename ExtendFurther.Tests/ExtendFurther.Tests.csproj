@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CollectionExtensionTests.cs" />
+    <Compile Include="NumericalExtensionTests.cs" />
     <Compile Include="StringExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

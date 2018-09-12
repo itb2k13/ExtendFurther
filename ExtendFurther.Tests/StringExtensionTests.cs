@@ -5,7 +5,7 @@ namespace ExtendFurther.Tests
 {
 
     [TestFixture]
-    public class ExtendFurtherTests
+    public class StringExtensionTests
     {
         [Test]
         [TestCase("", false)]
@@ -44,6 +44,19 @@ namespace ExtendFurther.Tests
             Assert.That(s.EqualTo(t), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        [TestCase("", false)]
+        [TestCase(null, false)]
+        [TestCase(" ", false)]
+        [TestCase("test'user@domain.com", true)]
+        [TestCase("a@b.com", true)]
+        [TestCase("user@domain.com", true)]
+        [TestCase("test.user@domain.com", true)]
+        [TestCase("user@dom.edu.co.uk", true)]
+        public void Extension_StringExtension_Validates_Email_Addresses(string s, bool expectedResult)
+        {
+            Assert.That(s.IsValidEmail(), Is.EqualTo(expectedResult));
+        }
     }
 }
 
