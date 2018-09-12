@@ -119,18 +119,18 @@ namespace ExtendFurther
         {
             return !string.IsNullOrEmpty(s) ? s.Replace(" ", "") : string.Empty;
         }
-        public static bool IsGuid(this string testString)
+        public static bool IsGuid(this string s)
         {
-            Guid testGuid;
-            return Guid.TryParse(testString, out testGuid);
+            Guid guid;
+            return Guid.TryParse(s, out guid);
+        }
+        public static Guid ToGuid(this string s)
+        {
+            return Guid.Parse(s);
         }
         public static SemVersion ToSemVersion(this string s)
         {
             return new SemVersion(s);
-        }
-        public static string ToDateRangeFilterOption(this int i)
-        {
-            return i == 1 ? "Last Month" : i == 12 ? "Last Year" : $"Last {i} Months";
         }
         public static bool ToBool(this string s)
         {

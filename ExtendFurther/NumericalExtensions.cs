@@ -28,5 +28,9 @@ namespace ExtendFurther
         {
             return Math.Round(d, i);
         }
+        public static string ToDateRangeFilterOption(this int i)
+        {
+            return i <= 0 ? "This Month" : i == 1 ? "Last Month" : i <= 12 ? "This Year" : i <= 24 ? "Last Year" : $"Last {i} Months";
+        }
     }
 }

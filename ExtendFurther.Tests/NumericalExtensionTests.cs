@@ -46,6 +46,17 @@ namespace ExtendFurther.Tests
         {
             Assert.That(d.Rnd(decimalPlaces), Is.EqualTo(expectedOutcome));
         }
+
+        [Test]
+        [TestCase(0, "This Month")]
+        [TestCase(1, "Last Month")]
+        [TestCase(12, "This Year")]
+        [TestCase(24, "Last Year")]
+        [TestCase(50, "Last 50 Months")]
+        public void Extension_StringExtension_ToDateRangeFilterOption(int i, string expectedResult)
+        {
+            Assert.That(i.ToDateRangeFilterOption(), Is.EqualTo(expectedResult));
+        }
     }
 }
 
