@@ -67,6 +67,34 @@ namespace ExtendFurther.Tests
         {
             Assert.That(s.IsNoE(), Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        [TestCase("", "", false)]
+        [TestCase(null, null, false)]
+        [TestCase(null, "abc", false)]
+        [TestCase(" ", " ", true)]
+        [TestCase("abc", "abc", true)]
+        [TestCase("ABC", "abc", true)]
+        [TestCase("aBc", "AbC", true)]
+        public void Extension_StringExtension_Is(string s, string t, bool expectedResult)
+        {
+            Assert.That(s.Is(t), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase("", 0, "")]
+        [TestCase(null, 0, "")]
+        [TestCase(" ", 0, "")]
+        [TestCase("abc", 0, "")]
+        [TestCase("", 3, "")]
+        [TestCase(null, 3, "")]
+        [TestCase(" ", 3, "")]
+        [TestCase("abc", 3, "abc")]
+        public void Extension_StringExtension_Truncate(string s, int maxChars, string expectedResult)
+        {
+            Assert.That(s.Truncate(maxChars), Is.EqualTo(expectedResult));
+        }
+
     }
 }
 

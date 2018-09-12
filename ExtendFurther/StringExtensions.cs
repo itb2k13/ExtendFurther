@@ -210,7 +210,11 @@ namespace ExtendFurther
         }
         public static string Truncate(this string value, int maxChars)
         {
-            return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...");
+            return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars));
+        }
+        public static string TruncateAndAppend(this string value, int maxChars, string append)
+        {
+            return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars) + append);
         }
         public static string ToTitleCase(this string value)
         {
