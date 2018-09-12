@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExtendFurther</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>itcombox@gmail.com</authors>
     <owners>itcombox@gmail.com</owners>
     <licenseUrl>https://github.com/itb2k13/ExtendFurther/blob/master/LICENSE</licenseUrl>
@@ -10,15 +10,14 @@
     <iconUrl>https://cdn3.iconfinder.com/data/icons/travelling-icon-set/800/bridge-512.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another simple string, number and collection extension library</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Converting projeect to vs2015 and .Net4.6.</releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>Extension Extensions</tags>
+    <tags>Simple String Extensions</tags>
     <dependencies>
     </dependencies>
   </metadata>
   <files>
-    <file src="ExtendFurther\bin\Release\netstandard2.0\ExtendFurther.dll" target="lib\netstandard2.0\ExtendFurther.dll" />
-    <file src="ExtendFurther\bin\Release\netstandard2.0\ExtendFurther.deps.json" target="lib\netstandard2.0\ExtendFurther.deps.json" />
-    <file src="ExtendFurther\bin\Release\netstandard2.0\ExtendFurther.xml" target="lib\netstandard2.0\ExtendFurther.xml" />
+    <file src="ExtendFurther\bin\Release\ExtendFurther.dll" target="lib\net46\ExtendFurther.dll" />
+    <file src="ExtendFurther\bin\Release\ExtendFurther.xml" target="lib\net46\ExtendFurther.xml" />
   </files>
 </package>
