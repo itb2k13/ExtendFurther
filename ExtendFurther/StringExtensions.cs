@@ -30,7 +30,7 @@ namespace ExtendFurther
             return Convert.ToInt32(s);
         }
 
-        public static string Plus(this string s, string t)
+        public static string Comma(this string s, string t)
         {
             return $"{s},{t}";
         }
@@ -38,6 +38,10 @@ namespace ExtendFurther
         public static string YorN(this bool b)
         {
             return b ? "Y" : "N";
+        }
+        public static string YesOrNo(this bool b)
+        {
+            return b ? "Yes" : "No";
         }
 
         public static string Or(this string s, string t)

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\ExtendFurther.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />

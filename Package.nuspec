@@ -9,10 +9,10 @@
     <projectUrl>https://github.com/itb2k13/ExtendFurther</projectUrl>
     <iconUrl>https://cdn3.iconfinder.com/data/icons/travelling-icon-set/800/bridge-512.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Another simple string, number and collection extension library</description>
+    <description>Another library of simple string, number and collection extension library</description>
     <releaseNotes>Converting projeect to vs2015 and .Net4.6.</releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>Simple String Extensions</tags>
+    <tags>String Extensions, Numerical Extensions, Collection Extensions</tags>
     <dependencies>
     </dependencies>
   </metadata>
