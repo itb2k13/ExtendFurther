@@ -1,5 +1,4 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace ExtendFurther.Tests
 {
@@ -56,6 +55,17 @@ namespace ExtendFurther.Tests
         public void Extension_StringExtension_Validates_Email_Addresses(string s, bool expectedResult)
         {
             Assert.That(s.IsValidEmail(), Is.EqualTo(expectedResult));
+        }
+
+
+        [Test]
+        [TestCase("", true)]
+        [TestCase(null, true)]
+        [TestCase(" ", false)]
+        [TestCase("abc", false)]
+        public void Extension_StringExtension_IsNoE(string s, bool expectedResult)
+        {
+            Assert.That(s.IsNoE(), Is.EqualTo(expectedResult));
         }
     }
 }
