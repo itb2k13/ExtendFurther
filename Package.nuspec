@@ -2,17 +2,17 @@
 <package >
   <metadata>
     <id>ExtendFurther</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <authors>itcombox@gmail.com</authors>
     <owners>itcombox@gmail.com</owners>
     <licenseUrl>https://github.com/itb2k13/ExtendFurther/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/itb2k13/ExtendFurther</projectUrl>
     <iconUrl>https://cdn3.iconfinder.com/data/icons/travelling-icon-set/800/bridge-512.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Another library of simple string, number and collection extension library</description>
-    <releaseNotes>Converting projeect to vs2015 and .Net4.6.</releaseNotes>
+    <description>Another library of simple string, number and collection extensions</description>
+    <releaseNotes>Added more extensions and relevant unit tests</releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>String Extensions, Numerical Extensions, Collection Extensions</tags>
+    <tags>String Extensions, Numerical Extensions, List Extensions, Collection Extensions</tags>
     <dependencies>
     </dependencies>
   </metadata>
