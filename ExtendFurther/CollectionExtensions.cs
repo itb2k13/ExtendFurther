@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace ExtendIt
+namespace ExtendFurther
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class CollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="R"></typeparam>
+        /// <param name="en"></param>
+        /// <param name="evaluate"></param>
+        /// <returns></returns>
         public static T MaxBy<T, R>(this IEnumerable<T> en, Func<T, R> evaluate) where R : IComparable<R>
         {
             return en.Select(t => new Tuple<T, R>(t, evaluate(t)))

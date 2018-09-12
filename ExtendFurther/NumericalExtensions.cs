@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExtendIt
+namespace ExtendFurther
 {
     public static class NumericalExtensions
     {

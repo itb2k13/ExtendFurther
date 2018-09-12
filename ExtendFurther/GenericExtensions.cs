@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExtendIt
+namespace ExtendFurther
 {
     public static class GenericExtensions
     {

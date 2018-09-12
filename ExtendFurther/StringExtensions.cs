@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace ExtendIt
+namespace ExtendFurther
 {
     public static class StringExtensions
     {

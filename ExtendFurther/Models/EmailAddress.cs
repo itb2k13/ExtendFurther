@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ExtendIt
+namespace ExtendFurther
 {
 
     public class EmailAddressAttribute
