@@ -41,10 +41,12 @@ namespace ExtendFurther
 
             return values;
         }
+
         public static string Get(this Dictionary<string, object> d, string key)
         {
             return d.ContainsKey(key) ? d[key]?.ToString() : string.Empty;
         }
+
         public static List<KeyValuePair<int, int>> ToKeyValuePair(this int[,] array)
         {
             var result = new List<KeyValuePair<int, int>>();
@@ -55,17 +57,25 @@ namespace ExtendFurther
 
             return result;
         }
+
         public static List<int> Enumerator(this int i)
         {
             return Enumerable.Range(0, Math.Abs(i)).ToList().Select(j => i < 0 ? j * -1 : j).ToList();
         }
+
         public static bool IsDistinct(this List<string> s)
         {
             return s?.Distinct().Count() == s?.Count();
         }
+
         public static IDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
         {
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
+        }
+
+        public static string Rand(this IEnumerable<string> values)
+        {
+            return values.ElementAt(0.RandPos(values.Count() - 1));
         }
     }
 }

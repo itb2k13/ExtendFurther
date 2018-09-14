@@ -48,14 +48,14 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
-        [TestCase(0, "This Month")]
-        [TestCase(1, "Last Month")]
-        [TestCase(12, "This Year")]
-        [TestCase(24, "Last Year")]
-        [TestCase(50, "Last 50 Months")]
-        public void Extension_StringExtension_ToDateRangeFilterOption(int i, string expectedResult)
+        [TestCase(0, 0)]
+        [TestCase(0, 10)]
+        [TestCase(0, 1)]
+        [TestCase(0, 1)]
+        [TestCase(5, 100)]
+        public void Extension_NumericalExtension_Rand(int i, int j)
         {
-            Assert.That(i.ToDateRangeFilterOption(), Is.EqualTo(expectedResult));
+            Assert.That(i.RandPos(j), Is.GreaterThanOrEqualTo(i).And.LessThanOrEqualTo(j));
         }
     }
 }
