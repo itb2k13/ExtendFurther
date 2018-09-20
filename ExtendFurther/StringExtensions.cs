@@ -124,14 +124,17 @@ namespace ExtendFurther
             Guid guid;
             return Guid.TryParse(s, out guid);
         }
+
         public static Guid ToGuid(this string s)
         {
             return Guid.Parse(s);
         }
+
         public static SemVersion ToSemVersion(this string s)
         {
             return new SemVersion(s);
         }
+
         public static bool ToBool(this string s)
         {
             if (string.IsNullOrEmpty(s)) return false;
@@ -146,10 +149,12 @@ namespace ExtendFurther
                 return false;
 
         }
+
         public static bool IsNoE(this string s)
         {
             return string.IsNullOrEmpty(s);
         }
+
         public static bool IsValidEmail(this string s)
         {
             return !string.IsNullOrEmpty(s) && new EmailAddressAttribute().IsValid(s);
@@ -171,6 +176,7 @@ namespace ExtendFurther
 
             return (T)Convert.ChangeType(valueAsString, typeof(T), CultureInfo.InvariantCulture);
         }
+
         public static bool IsUri(this string s)
         {
             return Uri.IsWellFormedUriString(s, UriKind.Absolute);
@@ -183,10 +189,12 @@ namespace ExtendFurther
             else
                 return s;
         }
+
         public static bool Exists(this string s)
         {
             return !string.IsNullOrWhiteSpace(s);
         }
+
         public static string FirstN(this string s, int n)
         {
             return !string.IsNullOrEmpty(s) && n >= 0 ? s.Substring(0, Math.Min(s.Length, n)) : string.Empty;
@@ -198,6 +206,7 @@ namespace ExtendFurther
                 new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(Int64.Parse(s)).ToLocalTime() :
                 DateTime.Parse(s);
         }
+
         public static string SanitizePhoneNumber(this string phone, string c)
         {
             if (!String.IsNullOrEmpty(phone))
@@ -208,18 +217,26 @@ namespace ExtendFurther
             return phone;
 
         }
+
         public static string Truncate(this string value, int maxChars)
         {
             return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars));
         }
+
         public static string TruncateAndAppend(this string value, int maxChars, string append)
         {
             return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars) + append);
         }
+
         public static string ToTitleCase(this string value)
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
             return textInfo.ToTitleCase(value.ToLower());
+        }
+
+        public static string NoSpaceLower(this string s)
+        {
+            return s.NoSpace().ToLower();
         }
     }
 }

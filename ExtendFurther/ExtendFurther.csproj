@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="GenericExtensions.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\SemVersion.cs" />

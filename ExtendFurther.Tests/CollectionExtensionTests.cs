@@ -6,6 +6,7 @@ namespace ExtendFurther.Tests
 {
     class CollectionExtensionTests
     {
+        [Test]
         [TestCase(new string[] { "", "" }, false)]
         [TestCase(new string[] { "" }, true)]
         [TestCase(new string[] { "a", "b" }, true)]
@@ -15,6 +16,7 @@ namespace ExtendFurther.Tests
             Assert.That(s.ToList().IsDistinct, Is.EqualTo(isDistinct));
         }
 
+        [Test]
         [TestCase(new string[] { "a", "b", "c", "d" }, null)]
         public void Extension_ListExtension_Rand(string[] values, int i)
         {

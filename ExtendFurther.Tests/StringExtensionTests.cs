@@ -107,6 +107,29 @@ namespace ExtendFurther.Tests
             Assert.That(i.ToDateRangeFilterOption(), Is.EqualTo(expectedResult));
         }
 
+
+        [Test]
+        [TestCase("", "")]
+        [TestCase(null, "")]
+        [TestCase("abc", "abc")]
+        [TestCase("a b c", "abc")]
+        [TestCase("A BC", "ABC")]
+        public void Extension_StringExtension_NoSpace(string s, string expectedResult)
+        {
+            Assert.That(s.NoSpace(), Is.EqualTo(expectedResult));
+        }
+
+
+        [Test]
+        [TestCase("", "")]
+        [TestCase(null, "")]
+        [TestCase("abc", "abc")]
+        [TestCase("a b c", "abc")]
+        [TestCase("A BC", "abc")]
+        public void Extension_StringExtension_NoSpaceLower(string s, string expectedResult)
+        {
+            Assert.That(s.NoSpaceLower(), Is.EqualTo(expectedResult));
+        }
     }
 }
 
