@@ -33,6 +33,12 @@ namespace ExtendFurther
                     .RoundUpToInt();
         }
 
+        /// <summary>
+        /// Adds a number of seconds to the specified DateTime string
+        /// </summary>
+        /// <param name="s">The DateTime string</param>
+        /// <param name="i">How many seconds to add to the input string</param>
+        /// <returns>A new DateTime with the specified number of seconds added</returns>
         public static DateTime AddSeconds(this string s, int i)
         {
             return DateTime.Parse(s).AddSeconds(i);
