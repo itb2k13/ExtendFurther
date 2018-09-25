@@ -57,6 +57,20 @@ namespace ExtendFurther.Tests
         {
             Assert.That(i.RandPos(j), Is.GreaterThanOrEqualTo(i).And.LessThanOrEqualTo(j));
         }
+
+        [Test]
+        [TestCase("0", true)]
+        [TestCase("1234", true)]
+        [TestCase("1234", true)]
+        [TestCase("141421451", true)]
+        [TestCase("-1", true)]
+        [TestCase("-23232323", true)]
+        [TestCase("abc", false)]
+        [TestCase("1.1234", false)]
+        public void Extension_NumericalExtension_IsNumeric(string s, bool expectedOutcome)
+        {
+            Assert.That(s.IsInt(), Is.EqualTo(expectedOutcome));
+        }
     }
 }
 

@@ -130,6 +130,25 @@ namespace ExtendFurther.Tests
         {
             Assert.That(s.NoSpaceLower(), Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        [TestCase("", false)]
+        [TestCase(null, false)]
+        [TestCase("0", false)]
+        [TestCase("-1", false)]
+        [TestCase("   ", false)]
+        [TestCase("1", true)]
+        [TestCase("2", true)]
+        [TestCase("100", true)]
+        [TestCase("true", true)]
+        [TestCase("TRUE ", true)]
+        [TestCase("tRUe", true)]
+        [TestCase("Yes", true)]
+        [TestCase("yEs ", true)]
+        public void Extension_StringExtension_ToBool(string s, bool expectedResult)
+        {
+            Assert.That(s.ToBool(), Is.EqualTo(expectedResult));
+        }
     }
 }
 

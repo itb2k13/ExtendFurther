@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ExtendFurther
 {
@@ -17,6 +18,16 @@ namespace ExtendFurther
         public static decimal Minus(this decimal d, int percent)
         {
             return Math.Round(d - (d * (percent / 100)));
+        }
+
+        public static int RoundUpToInt(this double d)
+        {
+            return Convert.ToInt32(Math.Ceiling(d));
+        }
+
+        public static int RoundDownToInt(this double d)
+        {
+            return Convert.ToInt32(Math.Floor(d));
         }
 
         public static bool ToBool(this int i)
@@ -38,5 +49,6 @@ namespace ExtendFurther
         {
             return (new Random(Guid.NewGuid().GetHashCode())).Next(i, j + 1);
         }
+
     }
 }

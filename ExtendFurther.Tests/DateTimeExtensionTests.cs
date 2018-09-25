@@ -18,11 +18,18 @@ namespace ExtendFurther.Tests
         [TestCase(123214)]
         [TestCase(3214325)]
         [TestCase(123)]
-        [TestCase(1515)]
+        [TestCase(int.MaxValue)]
         public void Extension_DateTimeExtension_SubtractUtcNow(int timeDiff)
         {
             var futureDateTime = DateTime.UtcNow.AddSeconds(timeDiff).ToUtcDateTimeString();
             Assert.That(futureDateTime.SubtractUtcNow(), Is.EqualTo(timeDiff));
+        }
+
+        [Test]
+        [TestCase(10)]
+        public void Extension_DateTimeExtension_AddSeconds(int seconds)
+        {
+            Assert.That("2018-09-25 10:02:42".AddSeconds(seconds), Is.EqualTo(new DateTime(2018, 9, 25, 10, 2, 52)));
         }
 
     }

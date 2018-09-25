@@ -140,9 +140,13 @@ namespace ExtendFurther
             if (string.IsNullOrEmpty(s)) return false;
 
             if (
-                s.Equals("true", StringComparison.InvariantCultureIgnoreCase)
+                s.Trim().Equals("true", StringComparison.InvariantCultureIgnoreCase)
                 ||
-                s.Equals("1")
+                s.Trim().Equals("yes", StringComparison.InvariantCultureIgnoreCase)
+                ||
+                s.Trim().Equals("1")
+                ||
+                (s.IsInt() && s.ToInt() >= 1)
                 )
                 return true;
             else
