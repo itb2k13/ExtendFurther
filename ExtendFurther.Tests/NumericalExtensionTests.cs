@@ -53,9 +53,15 @@ namespace ExtendFurther.Tests
         [TestCase(0, 1)]
         [TestCase(0, 1)]
         [TestCase(5, 100)]
+        [TestCase(-5, 100)]
+        [TestCase(-5, -100)]
+        [TestCase(-5, 0)]
+        [TestCase(-50000, 100)]
+        [TestCase(100, 100)]
+        [TestCase(-100, -100)]
         public void Extension_NumericalExtension_Rand(int i, int j)
         {
-            Assert.That(i.RandPos(j), Is.GreaterThanOrEqualTo(i).And.LessThanOrEqualTo(j));
+            Assert.That(i.RandBetween(j), Is.GreaterThanOrEqualTo(i < j ? i : j).And.LessThanOrEqualTo(i < j ? j : i));
         }
 
         [Test]
@@ -70,6 +76,15 @@ namespace ExtendFurther.Tests
         public void Extension_NumericalExtension_IsNumeric(string s, bool expectedOutcome)
         {
             Assert.That(s.IsInt(), Is.EqualTo(expectedOutcome));
+        }
+
+        [Test]
+        [TestCase(0, 0, 0, "-79228162514264337593543950335")]
+        [TestCase(52, 100, 2, "0.52")]
+        [TestCase(33, 100, 5, "0.33333")]
+        public void Extension_NumericalExtension_AsAPercentOf(decimal d, decimal e, int decimalPlaces, decimal expectedOutcome)
+        {
+            Assert.That(d.AsAPercentOf(e, decimalPlaces), Is.EqualTo(expectedOutcome));
         }
     }
 }

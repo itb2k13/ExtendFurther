@@ -22,5 +22,12 @@ namespace ExtendFurther.Tests
         {
             Assert.That(values.Contains(values.Rand()));
         }
+
+        [Test]
+        [TestCase(new int[] { 1, -100, 3123, -12331 }, null)]
+        public void Extension_ListExtension_Rand(int[] values, int i)
+        {
+            Assert.That(values.Contains(values.Rand()));
+        }
     }
 }

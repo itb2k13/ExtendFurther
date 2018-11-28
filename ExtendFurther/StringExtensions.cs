@@ -48,6 +48,7 @@ namespace ExtendFurther
         {
             return string.IsNullOrEmpty(s) ? t : s;
         }
+
         public static bool IsNotNullOrEmptyOrZero(this string s)
         {
             if (string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s) || "0".Equals(s, StringComparison.InvariantCultureIgnoreCase))

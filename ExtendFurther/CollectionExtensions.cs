@@ -63,9 +63,14 @@ namespace ExtendFurther
             return Enumerable.Range(0, Math.Abs(i)).ToList().Select(j => i < 0 ? j * -1 : j).ToList();
         }
 
-        public static bool IsDistinct(this List<string> s)
+        /// <summary>
+        /// Determines if a list of <typeparam name="T"></typeparam> is a distinct list. An empty list is considered distinct.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsDistinct<T>(this IEnumerable<T> s)
         {
-            return s?.Distinct().Count() == s?.Count();
+            return s?.Distinct()?.Count() == s?.Count();
         }
 
         public static IDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
@@ -73,9 +78,15 @@ namespace ExtendFurther
             return new ReadOnlyDictionary<TKey, TValue>(dictionary);
         }
 
-        public static string Rand(this IEnumerable<string> values)
+        /// <summary>
+        /// Returns a random <typeparam name="T"></typeparam> from the collection of <typeparam name="T"></typeparam> provided
+        /// </summary>
+        /// <param name="values">The list of <typeparam name="T"></typeparam> from which to pick a random entry</param>
+        /// <returns>A <typeparam name="T"></typeparam> randomly from the collection</returns>
+        public static T Rand<T>(this IEnumerable<T> values) 
         {
-            return values.ElementAt(0.RandPos(values.Count() - 1));
+            return values.ElementAt(0.RandBetween(values.Count() - 1));
         }
+
     }
 }
