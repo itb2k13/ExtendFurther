@@ -79,6 +79,20 @@ namespace ExtendFurther
         }
 
         /// <summary>
+        /// Splits a collection into N parts
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">The collection to split</param>
+        /// <param name="parts">How many sub-collections to split by</param>
+        /// <returns></returns>
+        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> list, int parts)
+        {
+            return list.Select((item, index) => new { index, item })
+                       .GroupBy(x => x.index % parts)
+                       .Select(x => x.Select(y => y.item));
+        }
+
+        /// <summary>
         /// Returns a random <typeparam name="T"></typeparam> from the collection of <typeparam name="T"></typeparam> provided
         /// </summary>
         /// <param name="values">The list of <typeparam name="T"></typeparam> from which to pick a random entry</param>

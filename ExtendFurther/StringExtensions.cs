@@ -243,5 +243,15 @@ namespace ExtendFurther
         {
             return s.NoSpace().ToLower();
         }
+
+        /// <summary>
+        /// Splits a string by inserting a space between each lowercase and uppercase letter
+        /// </summary>
+        /// <param name="input">The camelcase string to split</param>
+        /// <returns>A string with spaces</returns>
+        public static string SplitCamelCase(this string input)
+        {
+            return !input.IsNoE() ? System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim() : string.Empty;
+        }
     }
 }

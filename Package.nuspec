@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ExtendFurther</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <authors>itcombox@gmail.com</authors>
     <owners>itcombox@gmail.com</owners>
     <licenseUrl>https://github.com/itb2k13/ExtendFurther/blob/master/LICENSE</licenseUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another library of simple string, number and collection extensions</description>
     <releaseNotes>Added more extensions and relevant unit tests</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <copyright>Copyright 2019</copyright>
     <tags>String Extensions, Numerical Extensions, List Extensions, Collection Extensions</tags>
     <dependencies>
     </dependencies>

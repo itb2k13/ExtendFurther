@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace ExtendFurther
 {
@@ -20,21 +19,38 @@ namespace ExtendFurther
             return decimal.Parse(Math.Round(d, 2).ToString("N2"));
         }
 
-        public static decimal Minus(this decimal d, int percent)
+        public static decimal MinusPercent(this decimal d, int percent)
         {
             return Math.Round(d - (d * (percent / 100)));
         }
 
+        /// <summary>
+        /// Works out the pecentage of decimal A to decimal B
+        /// </summary>
+        /// <param name="d">The numerator</param>
+        /// <param name="o">The denominator</param>
+        /// <param name="decimalPlaces">Rounding to this many decimal places</param>
+        /// <returns>The percentage of A to B rounded to the specified number of decimal places</returns>
         public static decimal AsAPercentOf(this decimal d, decimal o, int decimalPlaces)
         {
-            return o != 0 ? (d/o).Rnd(decimalPlaces) : decimal.MinValue;
+            return o != 0 ? Round(((d / o) * 100), decimalPlaces) : decimal.MinValue;
         }
 
+        /// <summary>
+        /// Rounds the input up to the nearest integer
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static int RoundUpToInt(this double d)
         {
             return Convert.ToInt32(Math.Ceiling(d));
         }
 
+        /// <summary>
+        /// Rounds down to the nearest integer
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static int RoundDownToInt(this double d)
         {
             return Convert.ToInt32(Math.Floor(d));
@@ -56,7 +72,7 @@ namespace ExtendFurther
         /// <param name="d"></param>
         /// <param name="i"></param>
         /// <returns></returns>
-        public static decimal Rnd(this decimal d, int i)
+        public static decimal Round(this decimal d, int i)
         {
             return Math.Round(d, i);
         }

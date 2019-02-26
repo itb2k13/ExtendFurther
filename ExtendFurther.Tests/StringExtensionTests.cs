@@ -131,6 +131,21 @@ namespace ExtendFurther.Tests
             Assert.That(s.NoSpaceLower(), Is.EqualTo(expectedResult));
         }
 
+
+        [Test]
+        [TestCase("", "")]
+        [TestCase(null, "")]
+        [TestCase("abc", "abc")]
+        [TestCase("a b c", "a b c")]
+        [TestCase("ABC", "A B C")]
+        [TestCase("AbC", "Ab C")]
+        [TestCase("OneTwoThree.", "One Two Three.")]
+        [TestCase("CamelCase", "Camel Case")]
+        public void Extension_StringExtension_SplitCamelCase(string s, string expectedResult)
+        {
+            Assert.That(s.SplitCamelCase(), Is.EqualTo(expectedResult));
+        }
+
         [Test]
         [TestCase("", false)]
         [TestCase(null, false)]

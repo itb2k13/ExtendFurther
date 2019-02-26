@@ -1,5 +1,4 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace ExtendFurther.Tests
 {
@@ -16,6 +15,29 @@ namespace ExtendFurther.Tests
         public void Extension_NumericalExtension_ToBool(int i, bool expectedOutcome)
         {
             Assert.That(i.ToBool(), Is.EqualTo(expectedOutcome));
+        }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(-1, -1)]
+        [TestCase(-99, -99)]
+        [TestCase(1.1, 2)]
+        [TestCase(191.0123, 192)]
+        public void Extension_NumericalExtension_RoundUpToInt(double i, int expectedOutcome)
+        {
+            Assert.That(i.RoundUpToInt(), Is.EqualTo(expectedOutcome));
+        }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(-1, -1)]
+        [TestCase(-99, -99)]
+        [TestCase(1.1, 1)]
+        [TestCase(191.0123, 191)]
+        [TestCase(128.5, 128)]
+        public void Extension_NumericalExtension_RoundDownToInt(double i, int expectedOutcome)
+        {
+            Assert.That(i.RoundDownToInt(), Is.EqualTo(expectedOutcome));
         }
 
         [Test]
@@ -44,7 +66,7 @@ namespace ExtendFurther.Tests
         [TestCase(-1.555555, 1, -1.6)]
         public void Extension_NumericalExtension_Rnd_Rounds_To_Expected_Decimal_Places(decimal d, int decimalPlaces, decimal expectedOutcome)
         {
-            Assert.That(d.Rnd(decimalPlaces), Is.EqualTo(expectedOutcome));
+            Assert.That(NumericalExtensions.Round(d, decimalPlaces), Is.EqualTo(expectedOutcome));
         }
 
         [Test]
@@ -67,7 +89,6 @@ namespace ExtendFurther.Tests
         [Test]
         [TestCase("0", true)]
         [TestCase("1234", true)]
-        [TestCase("1234", true)]
         [TestCase("141421451", true)]
         [TestCase("-1", true)]
         [TestCase("-23232323", true)]
@@ -80,8 +101,10 @@ namespace ExtendFurther.Tests
 
         [Test]
         [TestCase(0, 0, 0, "-79228162514264337593543950335")]
-        [TestCase(52, 100, 2, "0.52")]
-        [TestCase(33, 100, 5, "0.33333")]
+        [TestCase(52, 100, 2, "52")]
+        [TestCase(33, 100, 5, "33")]
+        [TestCase(8, 512, 5, "1.5625")]
+        [TestCase(123213923, 1227389721, 3, "10.039")]
         public void Extension_NumericalExtension_AsAPercentOf(decimal d, decimal e, int decimalPlaces, decimal expectedOutcome)
         {
             Assert.That(d.AsAPercentOf(e, decimalPlaces), Is.EqualTo(expectedOutcome));
