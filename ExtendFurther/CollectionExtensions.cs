@@ -102,5 +102,15 @@ namespace ExtendFurther
             return values.ElementAt(0.RandBetween(values.Count() - 1));
         }
 
+        /// <summary>
+        /// Joins a collection of strings by the specified separator
+        /// </summary>
+        /// <param name="list">The collection of strings to join</param>
+        /// <param name="separator">The string to join with</param>
+        /// <returns>The collection as a single string joined by the separator</returns>
+        public static string JoinBy(this IEnumerable<string> list, string separator)
+        {
+            return list != null && list.Count() > 0 ? string.Join(separator, list) : string.Empty;
+        }
     }
 }

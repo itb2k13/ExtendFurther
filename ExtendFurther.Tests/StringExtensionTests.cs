@@ -148,6 +148,18 @@ namespace ExtendFurther.Tests
 
         [Test]
         [TestCase("", false)]
+        [TestCase("0", false)]
+        [TestCase(null, false)]
+        [TestCase("abc", true)]
+        [TestCase("a b c", true)]
+        [TestCase("   ", false)]
+        public void Extension_StringExtension_IsNotNullOrEmptyOrZero(string s, bool expectedResult)
+        {
+            Assert.That(s.IsNotNullOrEmptyOrWhitespaceOrZero, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase("", false)]
         [TestCase(null, false)]
         [TestCase("0", false)]
         [TestCase("-1", false)]

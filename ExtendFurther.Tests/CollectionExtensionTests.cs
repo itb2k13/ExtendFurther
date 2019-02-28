@@ -1,5 +1,4 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Linq;
 
 namespace ExtendFurther.Tests
@@ -29,5 +28,16 @@ namespace ExtendFurther.Tests
         {
             Assert.That(values.Contains(values.Rand()));
         }
+
+        [Test]
+        [TestCase(null, ";", "")]
+        [TestCase(new string[] { }, ";", "")]
+        [TestCase(new string[] { "abc" }, ";", "abc")]
+        [TestCase(new string[] { "a", "b", "c", "d", "e" }, ";", "a;b;c;d;e")]
+        public void Extension_ListExtension_JoinBy(string[] values, string separator, string expectedValue)
+        {            
+            Assert.That(values.JoinBy(separator), Is.EqualTo(expectedValue));
+        }
+
     }
 }
