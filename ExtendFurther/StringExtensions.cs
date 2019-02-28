@@ -86,9 +86,10 @@ namespace ExtendFurther
         {
             return (s == null & t == null) || (s != null && t != null && s.Equals(t, StringComparison.InvariantCultureIgnoreCase));
         }
+
         public static bool IsDesc(this string s)
         {
-            return s.IsIn(new List<string> { "desc", "descending" });
+            return s != null && s.Trim().IsIn(new List<string> { "desc", "descending" });
         }
 
         public static bool Eq(this string s, string t)

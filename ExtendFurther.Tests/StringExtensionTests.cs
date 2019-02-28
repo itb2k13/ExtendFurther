@@ -160,6 +160,23 @@ namespace ExtendFurther.Tests
 
         [Test]
         [TestCase("", false)]
+        [TestCase("0", false)]
+        [TestCase(null, false)]
+        [TestCase("   ", false)]
+        [TestCase("desc", true)]
+        [TestCase("     desc    ", true)]
+        [TestCase("Desc", true)]
+        [TestCase("DESC", true)]
+        [TestCase("descending", true)]
+        [TestCase("DesCENding", true)]
+        [TestCase("DESCENDING", true)]
+        public void Extension_StringExtension_IsDesc(string s, bool expectedResult)
+        {
+            Assert.That(s.IsDesc, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase("", false)]
         [TestCase(null, false)]
         [TestCase("0", false)]
         [TestCase("-1", false)]
