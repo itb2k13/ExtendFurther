@@ -131,6 +131,17 @@ namespace ExtendFurther.Tests
             Assert.That(s.NoSpaceLower(), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        [TestCase("", "", new string[] { })]
+        [TestCase(null, "", new string[] { })]
+        [TestCase("abc", ";", new string[] { "abc" })]
+        [TestCase("a b c", " ", new string[] { "a", "b", "c" })]
+        [TestCase("a;BC", ";", new string[] { "a", "BC" })]
+        public void Extension_StringExtension_Split(string s, string t, string[] expectedResult)
+        {
+            Assert.That(s.Split(t), Is.EqualTo(expectedResult));
+        }
+
 
         [Test]
         [TestCase("", "")]

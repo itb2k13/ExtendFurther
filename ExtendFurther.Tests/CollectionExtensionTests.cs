@@ -39,5 +39,23 @@ namespace ExtendFurther.Tests
             Assert.That(values.JoinBy(separator), Is.EqualTo(expectedValue));
         }
 
+
+        [Test]
+        [TestCase(null, ";", -1, null)]
+        [TestCase(new string[] { }, "", 0, new string[] { })]
+        [TestCase(new string[] { }, ";", 0, new string[] { })]
+        [TestCase(new string[] { ";abc" }, ";", 0, new string[] { "" })]
+        [TestCase(new string[] { "abc;", ";abc" }, ";", 0, new string[] { "abc", "" })]
+        [TestCase(new string[] { "abc" }, ";", 0, new string[] { "abc" })]
+        [TestCase(new string[] { "abc:def", "xyz:abc" }, ":", 0, new string[] { "abc", "xyz" })]
+        [TestCase(new string[] { "abc def", "xyz abc" }, " ", 1, new string[] { "def", "abc" })]
+        [TestCase(new string[] { "abc:def", "xyz:abc" }, ";", 1, new string[] { "abc:def", "xyz:abc" })]
+        [TestCase(new string[] { "abc:def", "xyz:abc" }, ":", 10, new string[] { "abc:def", "xyz:abc" })]
+        [TestCase(new string[] { "abc:def", "xyz;abc" }, ":", 0, new string[] { "abc", "xyz;abc" })]
+        public void Extension_ListExtension_SafeSplit(string[] values, string separator, int index, string[] expectedValue)
+        {
+            Assert.That(values.SafeSplit(separator, index), Is.EqualTo(expectedValue));
+        }
+
     }
 }

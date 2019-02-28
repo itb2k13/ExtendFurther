@@ -112,5 +112,29 @@ namespace ExtendFurther
         {
             return list != null && list.Count() > 0 ? string.Join(separator, list) : string.Empty;
         }
+
+        /// <summary>
+        /// Takes a collection of tokenized strings and safely splits each string returning the string from the specified index
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="splitBy"></param>
+        /// /// <param name="index"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SafeSplit(this IEnumerable<string> list, string splitBy, int index)
+        {
+            if (list != null && !string.IsNullOrEmpty(splitBy) && list.Count() > 0 && index >= 0)
+            {
+                return list.Select(s =>
+                    {
+                        var x = s.Split(splitBy.ToCharArray()[0]);
+                        return x.Count() > index ? x[index] : s;
+                    });
+            }
+            else
+            {
+                return list;
+            }
+        }
+
     }
 }

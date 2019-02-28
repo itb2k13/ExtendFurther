@@ -246,6 +246,18 @@ namespace ExtendFurther
         }
 
         /// <summary>
+        /// Splits a string into substrings based on the input string.
+        /// </summary>
+        /// <param name="s">The string to split</param>
+        /// <param name="t">The string to tokenize by</param>
+        /// <returns>A collection of strings</returns>
+        public static IEnumerable<string> Split(this string s, string t)
+        {
+            return !string.IsNullOrEmpty(s) ? s.Split(new string[] { t }, StringSplitOptions.None) : new string[0];
+        }
+        
+
+        /// <summary>
         /// Splits a string by inserting a space between each lowercase and uppercase letter
         /// </summary>
         /// <param name="input">The camelcase string to split</param>
