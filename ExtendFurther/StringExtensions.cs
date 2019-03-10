@@ -72,7 +72,7 @@ namespace ExtendFurther
             catch { return false; }
         }
 
-        public static bool IsIn(this string s, List<string> t)
+        public static bool IsIn(this string s, IEnumerable<string> t)
         {
             return s != null && t.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase));
         }
@@ -97,7 +97,7 @@ namespace ExtendFurther
             return s != null && s.Equals(t, StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public static bool IsNotIn(this string s, List<string> t)
+        public static bool IsNotIn(this string s, IEnumerable<string> t)
         {
             return !s.IsIn(t);
         }
@@ -121,6 +121,7 @@ namespace ExtendFurther
         {
             return !string.IsNullOrEmpty(s) ? s.Replace(" ", "") : string.Empty;
         }
+
         public static bool IsGuid(this string s)
         {
             Guid guid;
@@ -196,11 +197,22 @@ namespace ExtendFurther
                 return s;
         }
 
+        /// <summary>
+        /// Determines whether the string is null, empty or whitespace.
+        /// </summary>
+        /// <param name="s">The string to check for existence.</param>
+        /// <returns>True if the string is NOT null, empty or whitespace. False if the string IS empty, null or whitespace.</returns>
         public static bool Exists(this string s)
         {
             return !string.IsNullOrWhiteSpace(s);
         }
 
+        /// <summary>
+        /// Returns the first N characters of a string
+        /// </summary>
+        /// <param name="s">The string from which to return N characters</param>
+        /// <param name="n">How many characters (N) to return from the start of the string.</param>
+        /// <returns>A string of the first N characters.</returns>
         public static string FirstN(this string s, int n)
         {
             return !string.IsNullOrEmpty(s) && n >= 0 ? s.Substring(0, Math.Min(s.Length, n)) : string.Empty;
@@ -265,6 +277,30 @@ namespace ExtendFurther
         public static string SplitCamelCase(this string input)
         {
             return !input.IsNoE() ? System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim() : string.Empty;
+        }
+
+
+        /// <summary>
+        /// Determines whether a string starts with any of the entries in the collection (case-insensitive).
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static bool StartsWithAny(this string s, IEnumerable<string> t)
+        {
+            return !string.IsNullOrEmpty(s) && t != null && t.Count() > 0 && t.Any(x => s.StartsWith(x, System.StringComparison.OrdinalIgnoreCase));
+        }
+
+
+        /// <summary>
+        /// Determines whether a string ends with any of the entries in the collection (Case-insensitive).
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static bool EndsWithAny(this string s, IEnumerable<string> t)
+        {
+            return !string.IsNullOrEmpty(s) && t != null && t.Count() > 0 && t.Any(x => s.EndsWith(x, System.StringComparison.OrdinalIgnoreCase));
         }
     }
 }

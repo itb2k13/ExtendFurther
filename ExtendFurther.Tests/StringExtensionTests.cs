@@ -90,6 +90,8 @@ namespace ExtendFurther.Tests
         [TestCase(null, 3, "")]
         [TestCase(" ", 3, "")]
         [TestCase("abc", 3, "abc")]
+        [TestCase("abcdefghi", 4, "abcd")]
+        [TestCase("the quick brown fox", 6, "the qu")]
         public void Extension_StringExtension_Truncate(string s, int maxChars, string expectedResult)
         {
             Assert.That(s.Truncate(maxChars), Is.EqualTo(expectedResult));
@@ -129,6 +131,20 @@ namespace ExtendFurther.Tests
         public void Extension_StringExtension_NoSpaceLower(string s, string expectedResult)
         {
             Assert.That(s.NoSpaceLower(), Is.EqualTo(expectedResult));
+        }
+
+
+
+        [Test]
+        [TestCase("", "")]
+        [TestCase(null, "")]
+        [TestCase("abc", "abc")]
+        [TestCase("abcde", "abcde")]
+        [TestCase("abcdefghi", "abcde...")]
+        [TestCase("abcdefghi", "abcde###", "###")]
+        public void Extension_StringExtension_TruncateAndAppend(string s, string expectedResult, string append = "...")
+        {
+            Assert.That(s.TruncateAndAppend(5, append), Is.EqualTo(expectedResult));
         }
 
         [Test]
