@@ -109,6 +109,16 @@ namespace ExtendFurther.Tests
         {
             Assert.That(d.AsAPercentOf(e, decimalPlaces), Is.EqualTo(expectedOutcome));
         }
+
+        [Test]
+        [TestCase(0, 0, 0, 0)]
+        [TestCase(1, 10, 0, 1)]
+        [TestCase(100, 10, 0, 10)]
+        [TestCase(-10, 10, 0, 0)]
+        public void Extension_NumericalExtension_MaxMin(decimal d, decimal max, decimal min, decimal expectedResult)
+        {
+            Assert.That(d.MaxMin(max, min), Is.EqualTo(expectedResult));
+        }
     }
 }
 

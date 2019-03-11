@@ -216,10 +216,14 @@ namespace ExtendFurther.Tests
         [TestCase("tRUe", true)]
         [TestCase("Yes", true)]
         [TestCase("yEs ", true)]
+        [TestCase("y ", true)]
+        [TestCase("Y ", true)]
         public void Extension_StringExtension_ToBool(string s, bool expectedResult)
         {
             Assert.That(s.ToBool(), Is.EqualTo(expectedResult));
         }
+
+
     }
 }
 

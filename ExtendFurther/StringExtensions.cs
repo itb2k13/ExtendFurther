@@ -13,18 +13,22 @@ namespace ExtendFurther
         {
             return s.ToLower().Contains(t.ToLower());
         }
+
         public static string Coalesce(this List<string> s, string defaultIfNon = null)
         {
             return s.FirstOrDefault(t => !string.IsNullOrEmpty(t)) ?? defaultIfNon ?? string.Empty;
         }
+        
         public static bool Is(this string s, string t)
         {
             return !string.IsNullOrEmpty(s) && s.Equals(t, StringComparison.InvariantCultureIgnoreCase);
         }
+
         public static DateTime ToDate(this string s)
         {
             return Convert.ToDateTime(s);
         }
+
         public static int ToInt(this string s)
         {
             return Convert.ToInt32(s);
@@ -79,7 +83,7 @@ namespace ExtendFurther
 
         public static bool IsAsc(this string s)
         {
-            return string.IsNullOrEmpty(s) || new List<string>() { "asc", "ascending" }.Contains(s.ToLower());
+            return string.IsNullOrEmpty(s) || s.IsIn(new List<string> { "asc", "ascending" });
         }
 
         public static bool EqualTo(this string s, string t)
@@ -105,11 +109,6 @@ namespace ExtendFurther
         public static List<string> ToList(this NameValueCollection n)
         {
             return ((string[])n.AllKeys).ToList();
-        }
-
-        public static decimal MaxMin(this decimal d, decimal max, decimal min)
-        {
-            return d > max ? max : d < min ? min : d;
         }
 
         public static string GetSafeFilename(this string filename)
@@ -142,12 +141,7 @@ namespace ExtendFurther
         {
             if (string.IsNullOrEmpty(s)) return false;
 
-            if (
-                s.Trim().Equals("true", StringComparison.InvariantCultureIgnoreCase)
-                ||
-                s.Trim().Equals("yes", StringComparison.InvariantCultureIgnoreCase)
-                ||
-                s.Trim().Equals("1")
+            if (s.Trim().IsIn(new List<string> {"true", "yes", "1", "Y" })
                 ||
                 (s.IsInt() && s.ToInt() >= 1)
                 )
@@ -166,11 +160,13 @@ namespace ExtendFurther
         {
             return !string.IsNullOrEmpty(s) && new EmailAddressAttribute().IsValid(s);
         }
+
         public static int? ToNullableInt(this string s)
         {
             if (string.IsNullOrEmpty(s) || s == "--") return null;
             return Convert.ToInt32(GetValueAsNullable<decimal>(s));
         }
+
         public static double? ToNullableDouble(this string s)
         {
             if (string.IsNullOrEmpty(s)) return null;

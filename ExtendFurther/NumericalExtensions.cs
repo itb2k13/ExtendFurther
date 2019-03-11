@@ -95,5 +95,17 @@ namespace ExtendFurther
                  (new Random(Guid.NewGuid().GetHashCode())).Next(j, i + 1);
         }
 
+        /// <summary>
+        /// Determines if decimal D is greater than or less than the Max or Min.
+        /// </summary>
+        /// <param name="d">The decimal for comparison D</param>
+        /// <param name="max">The Maximum value D can be</param>
+        /// <param name="min">The Minimum value D can be</param>
+        /// <returns>Max if D is greater than Max, Min if D is less than Min or D if D is between Max and Min</returns>
+        public static decimal MaxMin(this decimal d, decimal max, decimal min)
+        {
+            return d > max ? max : d < min ? min : d;
+        }
+
     }
 }
