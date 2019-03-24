@@ -14,6 +14,11 @@ namespace ExtendFurther
             return s.ToLower().Contains(t.ToLower());
         }
 
+        public static bool ContainsAnyOf(this string s, IEnumerable<string> t)
+        {
+            return t.Count() > 0 && !string.IsNullOrEmpty(s) && t.Any(x => !string.IsNullOrEmpty(x) && s.ToLower().Contains(x.ToLower()));
+        }
+
         public static string Coalesce(this List<string> s, string defaultIfNon = null)
         {
             return s.FirstOrDefault(t => !string.IsNullOrEmpty(t)) ?? defaultIfNon ?? string.Empty;
@@ -298,5 +303,17 @@ namespace ExtendFurther
         {
             return !string.IsNullOrEmpty(s) && t != null && t.Count() > 0 && t.Any(x => s.EndsWith(x, System.StringComparison.OrdinalIgnoreCase));
         }
+
+        /// <summary>
+        /// Trims the trailing zeros from the string if it contains a decimal point
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string TrimZeros(this string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            else return s.Contains(".") ? s.TrimEnd('0').TrimEnd('.') : s;
+        }
+
     }
 }

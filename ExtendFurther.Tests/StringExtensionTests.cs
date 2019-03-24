@@ -148,6 +148,17 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
+        [TestCase("", new string[] { }, false)]
+        [TestCase(null, new string[] { }, false)]
+        [TestCase("abc", new string[] { "a", "x" }, true)]
+        [TestCase("a b c", new string[] { "a", "b", "c" }, true)]
+        [TestCase("xyz", new string[] { "a", "b" }, false)]
+        public void Extension_StringExtension_ContainsAnyOf(string s, string[] t, bool expectedResult)
+        {
+            Assert.That(s.ContainsAnyOf(t), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         [TestCase("", "", new string[] { })]
         [TestCase(null, "", new string[] { })]
         [TestCase("abc", ";", new string[] { "abc" })]
@@ -223,6 +234,20 @@ namespace ExtendFurther.Tests
             Assert.That(s.ToBool(), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase("123.456", "123.456")]
+        [TestCase("123.000", "123")]
+        [TestCase("123.45600", "123.456")]
+        [TestCase("123.0101", "123.0101")]
+        [TestCase("123.010", "123.01")]
+        [TestCase("000.000", "000")]
+        [TestCase("123.", "123")]
+        public void Extension_StringExtension_TrimZeros(string s, string expectedResult)
+        {
+            Assert.That(s.TrimZeros(), Is.EqualTo(expectedResult));
+        }
 
     }
 }
