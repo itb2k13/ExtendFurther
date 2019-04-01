@@ -69,6 +69,16 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
+        [TestCase("", "", ",")]
+        [TestCase(null, null, ",")]
+        [TestCase("a", "b", "a,b")]
+        [TestCase("abc", "def", "abc,def")]
+        public void Extension_StringExtension_Comma(string s, string t, string expectedResult)
+        {
+            Assert.That(s.Comma(t), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         [TestCase("", "", false)]
         [TestCase(null, null, false)]
         [TestCase(null, "abc", false)]
