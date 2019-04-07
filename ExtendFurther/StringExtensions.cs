@@ -315,5 +315,28 @@ namespace ExtendFurther
             else return s.Contains(".") ? s.TrimEnd('0').TrimEnd('.') : s;
         }
 
+        /// <summary>
+        /// Determines if the input string can be converted to a decimal representation
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsDecimal(this string s)
+        {
+            decimal d;
+            return decimal.TryParse(s, out d);
+        }
+
+        /// <summary>
+        /// Rounds a string decimal to specified number of places and then returns it back as a string
+        /// </summary>
+        /// <param name="s">The input decimal string</param>
+        /// <param name="rounding">How many decimal places to round to</param>
+        /// <returns></returns>
+        public static string Round(this string s, int rounding)
+        {
+            if (!s.Exists() || !s.IsDecimal()) return s;
+            else return Math.Round(Convert.ToDecimal(s), rounding).ToString("N2");
+        }
+
     }
 }

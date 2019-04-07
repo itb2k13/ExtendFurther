@@ -259,6 +259,23 @@ namespace ExtendFurther.Tests
             Assert.That(s.TrimZeros(), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase("abc", "abc")]
+        [TestCase("123.456", "123.46")]
+        [TestCase("123.000", "123.00")]
+        [TestCase("123.45600", "123.46")]
+        [TestCase("123.0101", "123.01")]
+        [TestCase("123.010", "123.01")]
+        [TestCase("000.000", "0.00")]
+        [TestCase("123.", "123.00")]
+        public void Extension_StringExtension_Round(string s, string expectedResult)
+        {
+            Assert.That(s.Round(2), Is.EqualTo(expectedResult));
+        }
+
+
     }
 }
 
