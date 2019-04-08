@@ -44,15 +44,6 @@ namespace ExtendFurther
             return $"{s},{t}";
         }
 
-        public static string YorN(this bool b)
-        {
-            return b ? "Y" : "N";
-        }
-        public static string YesOrNo(this bool b)
-        {
-            return b ? "Yes" : "No";
-        }
-
         public static string Or(this string s, string t)
         {
             return string.IsNullOrEmpty(s) ? t : s;
@@ -69,6 +60,7 @@ namespace ExtendFurther
                 return true;
             }
         }
+
         public static decimal ToDecimalOrZero(this string s)
         {
             try { return Convert.ToDecimal(s); }
@@ -134,7 +126,7 @@ namespace ExtendFurther
 
         public static Guid ToGuid(this string s)
         {
-            return Guid.Parse(s);
+            return s.IsGuid() ? Guid.Parse(s) : Guid.Empty;
         }
 
         public static SemVersion ToSemVersion(this string s)
