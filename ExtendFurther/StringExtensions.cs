@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -329,6 +330,19 @@ namespace ExtendFurther
             if (!s.Exists() || !s.IsDecimal()) return s;
             else return Math.Round(Convert.ToDecimal(s), rounding).ToString("N2");
         }
+
+        /// <summary>
+        /// Returns the relevant config variable based on the input key
+        /// </summary>
+        /// <param name="key">Config key</param>
+        /// <returns></returns>
+        public static T FromConfig<T>(this string key)
+        {
+            object value = ConfigurationManager.AppSettings[key];
+            try { return (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value.ToString()); }
+            catch { return default(T); }          
+        }
+
 
     }
 }

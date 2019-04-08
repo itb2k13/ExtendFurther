@@ -144,6 +144,38 @@ namespace ExtendFurther.Tests
         }
 
 
+        [Test]
+        [TestCase("", null)]
+        [TestCase(null, null)]
+        [TestCase("TestSettingNotExists", null)]
+        [TestCase("TestSettingOne", "abc")]
+        [TestCase("TestSettingTwo", "1234")]
+        public void Extension_StringExtension_FromConfig_String(string s, string expectedResult)
+        {
+            Assert.That(s.FromConfig<string>(), Is.EqualTo(expectedResult));
+        }
+
+
+        [Test]
+        [TestCase("", null)]
+        [TestCase(null, null)]
+        [TestCase("TestSettingNotExists", null)]
+        [TestCase("TestSettingThree", 999)]
+        public void Extension_StringExtension_FromConfig_Integer(string s, int? expectedResult)
+        {
+            Assert.That(s.FromConfig<int?>(), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase("", null)]
+        [TestCase(null, null)]
+        [TestCase("TestSettingNotExists", null)]
+        [TestCase("TestSettingFour", true)]
+        [TestCase("TestSettingFive", false)]
+        public void Extension_StringExtension_FromConfig_Bool(string s, bool? expectedResult)
+        {
+            Assert.That(s.FromConfig<bool?>(), Is.EqualTo(expectedResult));
+        }
 
         [Test]
         [TestCase("", "")]
