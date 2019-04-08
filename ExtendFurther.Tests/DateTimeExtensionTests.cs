@@ -8,7 +8,7 @@ namespace ExtendFurther.Tests
         [Test]
         public void Extension_DateTimeExtension_ToUtcDateTimeString()
         {
-            Assert.That(new DateTime(2018, 9, 20, 14, 34, 13).ToUtcDateTimeString(), Is.EqualTo("2018-09-20T13:34:13.000Z"));
+            Assert.That(new DateTime(2018, 9, 20, 13, 34, 13, DateTimeKind.Utc).ToUtcDateTimeString(), Is.EqualTo("2018-09-20T13:34:13.000Z"));
         }
 
         [Test]
