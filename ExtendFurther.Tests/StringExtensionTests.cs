@@ -228,6 +228,19 @@ namespace ExtendFurther.Tests
 
         [Test]
         [TestCase("", false)]
+        [TestCase(null, false)]
+        [TestCase("123", true)]
+        [TestCase("567", true)]
+        [TestCase("row", true)]
+        [TestCase("UiC", true)]
+        [TestCase("bob", false)]
+        public void Extension_StringExtension_IsContainedIn(string s, bool expectedResult)
+        {
+            Assert.That(s.IsPartOfAny("quick", "brown", "123", "45678"), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase("", false)]
         [TestCase("0", false)]
         [TestCase(null, false)]
         [TestCase("abc", true)]

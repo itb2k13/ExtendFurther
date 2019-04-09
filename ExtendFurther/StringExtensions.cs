@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
@@ -77,6 +78,11 @@ namespace ExtendFurther
         public static bool IsIn(this string s, IEnumerable<string> t)
         {
             return s != null && t.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public static bool IsPartOfAny(this string s, params string[] t)
+        {
+            return s.Exists() && t.Any(x => x.ContainsString(s));
         }
 
         public static bool IsAsc(this string s)
@@ -339,7 +345,7 @@ namespace ExtendFurther
         public static T FromConfig<T>(this string key)
         {
             object value = ConfigurationManager.AppSettings[key];
-            try { return (T)System.ComponentModel.TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value.ToString()); }
+            try { return (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value.ToString()); }
             catch { return default(T); }          
         }
 
