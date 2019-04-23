@@ -119,6 +119,20 @@ namespace ExtendFurther.Tests
         {
             Assert.That(d.MaxMin(max, min), Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        [TestCase(0, 0, 0)]
+        [TestCase(1, 100, 0)]
+        [TestCase(1000, 50, 500)]
+        [TestCase(100, 33, 67)]
+        [TestCase(61500, 20, 49200)]
+        [TestCase(978381, 26, 724002)]
+        [TestCase(725533, 79, 152362)]
+        [TestCase(610326, 99, 6103)]
+        public void Extension_NumericalExtension_MinusPercent(decimal d, int percentMinus, decimal expectedResult)
+        {
+            Assert.That(d.MinusPercent(percentMinus), Is.EqualTo(expectedResult));
+        }
     }
 }
 

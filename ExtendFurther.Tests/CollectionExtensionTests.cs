@@ -30,6 +30,22 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
+        [TestCase(10, 45)]
+        [TestCase(500, 124750)]
+        public void Extension_ListExtension_Enumerator(int i, int sum)
+        {
+            var en = i.Enumerator();
+
+            Assert.That(en.Sum(), Is.EqualTo(sum));
+            Assert.That(en.Count(), Is.EqualTo(i));
+
+            for (int j = i - 1; j >= 0; j--)
+            {
+                Assert.That(i.Enumerator().Contains(j), Is.True);
+            }
+        }
+
+        [Test]
         [TestCase(null, ";", "")]
         [TestCase(new string[] { }, ";", "")]
         [TestCase(new string[] { "abc" }, ";", "abc")]

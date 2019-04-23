@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Linq;
 
 namespace ExtendFurther.Tests
 {
@@ -308,6 +309,18 @@ namespace ExtendFurther.Tests
         [TestCase(null, null)]
         [TestCase("", "")]
         [TestCase("abc", "abc")]
+        [TestCase("123.456000", "123.46")]
+        [TestCase("123.000000", "123")]
+        [TestCase("123.5", "123.5")]
+        public void Extension_StringExtension_RoundAndTrimZeros(string s, string expectedResult)
+        {
+            Assert.That(s.Round(2).TrimZeros(), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase("abc", "abc")]
         [TestCase("123.456", "123.46")]
         [TestCase("123.000", "123.00")]
         [TestCase("123.45600", "123.46")]
@@ -320,6 +333,18 @@ namespace ExtendFurther.Tests
             Assert.That(s.Round(2), Is.EqualTo(expectedResult));
         }
 
+        [Test]
+        [TestCase("", new string[0], false)]
+        [TestCase("", null, false)]
+        [TestCase(null, null, false)]
+        [TestCase("abc", new string[2] {"ABC","def" }, true)]
+        [TestCase("abc", new string[2] { "xABCy", "def" }, false)]
+        [TestCase("ABC", new string[2] { "abc def", "def" }, false)]
+        [TestCase("DEF", new string[2] { "abc def", "def" }, true)]
+        public void Extension_StringExtension_StartsWithAny(string t, string[] s, bool expectedResult)
+        {
+            Assert.That(t.StartsWithAny(s?.ToList()), Is.EqualTo(expectedResult));
+        }
 
     }
 }

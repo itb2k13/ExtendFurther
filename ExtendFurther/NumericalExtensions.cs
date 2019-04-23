@@ -19,9 +19,26 @@ namespace ExtendFurther
             return decimal.Parse(Math.Round(d, 2).ToString("N2"));
         }
 
+        /// <summary>
+        /// Takes a percentage from the decimal provided and returns the nearest integral value
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="percent"></param>
+        /// <returns></returns>
         public static decimal MinusPercent(this decimal d, int percent)
         {
-            return Math.Round(d - (d * (percent / 100)));
+            return Math.Round(((100M - percent)/100M) * d);
+        }
+
+        /// <summary>
+        /// Takes a percentage from the integer provided and returns the nearest integral value
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="percent"></param>
+        /// <returns></returns>
+        public static int MinusPercent(this int i, int percent)
+        {
+            return Convert.ToInt32(Convert.ToDecimal(i).MinusPercent(percent));
         }
 
         /// <summary>

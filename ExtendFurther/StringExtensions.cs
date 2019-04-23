@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ExtendFurther
 {
@@ -25,7 +26,7 @@ namespace ExtendFurther
         {
             return s.FirstOrDefault(t => !string.IsNullOrEmpty(t)) ?? defaultIfNon ?? string.Empty;
         }
-        
+
         public static bool Is(this string s, string t)
         {
             return !string.IsNullOrEmpty(s) && s.Equals(t, StringComparison.InvariantCultureIgnoreCase);
@@ -145,7 +146,7 @@ namespace ExtendFurther
         {
             if (string.IsNullOrEmpty(s)) return false;
 
-            if (s.Trim().IsIn(new List<string> {"true", "yes", "1", "Y" })
+            if (s.Trim().IsIn(new List<string> { "true", "yes", "1", "Y" })
                 ||
                 (s.IsInt() && s.ToInt() >= 1)
                 )
@@ -267,7 +268,7 @@ namespace ExtendFurther
         {
             return !string.IsNullOrEmpty(s) ? s.Split(new string[] { t }, StringSplitOptions.None) : new string[0];
         }
-        
+
 
         /// <summary>
         /// Splits a string by inserting a space between each lowercase and uppercase letter
@@ -277,6 +278,18 @@ namespace ExtendFurther
         public static string SplitCamelCase(this string input)
         {
             return !input.IsNoE() ? System.Text.RegularExpressions.Regex.Replace(input, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim() : string.Empty;
+        }
+
+        /// <summary>
+        /// Performs a case-insensitive string replacement
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="replaceThis"></param>
+        /// <param name="withThis"></param>
+        /// <returns></returns>
+        public static string ReplaceInsensitive(this string str, string replaceThis, string withThis)
+        {
+            return Regex.Replace(str, replaceThis, withThis, RegexOptions.IgnoreCase);
         }
 
 
@@ -345,8 +358,8 @@ namespace ExtendFurther
         public static T FromConfig<T>(this string key)
         {
             object value = ConfigurationManager.AppSettings[key];
-            try { return (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value.ToString()); }
-            catch { return default(T); }          
+            try { return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(value.ToString()); }
+            catch { return default(T); }
         }
 
 
