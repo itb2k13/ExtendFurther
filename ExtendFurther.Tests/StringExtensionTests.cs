@@ -18,6 +18,18 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
+        [TestCase("", "", false)]
+        [TestCase(null, null, false)]
+        [TestCase(" ", " ", false)]
+        [TestCase("abc", "", true)]
+        [TestCase("abc", "abc", false)]
+        [TestCase("abc", "aBc", false)]
+        public void Extension_StringExtension_ExistsAndNot(string s, string t, bool expectedOutcome)
+        {
+            Assert.That(s.ExistsAndNot(t), Is.EqualTo(expectedOutcome));
+        }
+
+        [Test]
         [TestCase("", 3, "")]
         [TestCase(null, 3, "")]
         [TestCase("abc", 3, "abc")]

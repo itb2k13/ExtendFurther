@@ -210,6 +210,17 @@ namespace ExtendFurther
         }
 
         /// <summary>
+        /// Determines whether the string is null, empty or whitespace and not equal to the input (case in-sensitive).
+        /// </summary>
+        /// <param name="s">The string to check for existence.</param>
+        /// <param name="t">The string to check for equality.</param>
+        /// <returns>True if the string is NOT null, empty or whitespace or equal to the param t. False if the string IS empty, null or whitespace or equal to param t.</returns>
+        public static bool ExistsAndNot(this string s, string t)
+        {
+            return !string.IsNullOrWhiteSpace(s) && !s.Eq(t);
+        }
+
+        /// <summary>
         /// Returns the first N characters of a string
         /// </summary>
         /// <param name="s">The string from which to return N characters</param>
