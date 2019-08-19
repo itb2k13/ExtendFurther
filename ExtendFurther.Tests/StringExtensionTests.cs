@@ -361,6 +361,25 @@ namespace ExtendFurther.Tests
             Assert.That(t.StartsWithAny(s?.ToList()), Is.EqualTo(expectedResult));
         }
 
+
+        [Test]
+        [TestCase(null, "")]
+        [TestCase("", "")]
+        [TestCase("hello world", "68656c6c6f20776f726c64")]
+        public void Extension_StringExtension_ToHex(string s, string expectedResult)
+        {
+            Assert.That(s.ToHex(), Is.EqualTo(expectedResult));
+        }
+
+
+        [Test]
+        [TestCase(null, new byte[0])]
+        [TestCase("", new byte[0])]
+        [TestCase("abc", new byte[3] { 97, 98, 99 })]
+        public void Extension_StringExtension_ToBytes(string s, byte[] expectedResult)
+        {
+            Assert.That(s.ToBytes(), Is.EqualTo(expectedResult));
+        }
     }
 }
 

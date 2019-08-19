@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ExtendFurther
@@ -73,6 +74,12 @@ namespace ExtendFurther
         public static bool IsInt(this string s)
         {
             try { Convert.ToInt32(s); return true; }
+            catch { return false; }
+        }
+
+        public static bool IsLong(this string s)
+        {
+            try { Convert.ToInt64(s); return true; }
             catch { return false; }
         }
 
@@ -239,8 +246,8 @@ namespace ExtendFurther
 
         public static DateTime FromTimestamp(this string s)
         {
-            return s.IsInt() ?
-                new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(Int64.Parse(s)).ToLocalTime() :
+            return s.IsLong() ?
+                new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc).AddSeconds(long.Parse(s)).ToLocalTime() :
                 DateTime.Parse(s);
         }
 
@@ -255,14 +262,27 @@ namespace ExtendFurther
 
         }
 
-        public static string Truncate(this string value, int maxChars)
+        /// <summary>
+        /// Truncates a string safely to the specified number of characters. If the string is shorter then returns just the string.
+        /// </summary>
+        /// <param name="s">The string to truncate</param>
+        /// <param name="maxChars">How many chars to truncate from the left</param>
+        /// <returns>The truncated string</returns>
+        public static string Truncate(this string s, int maxChars)
         {
-            return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars));
+            return string.IsNullOrWhiteSpace(s) ? "" : (s.Length <= maxChars ? s : s.Substring(0, maxChars));
         }
 
-        public static string TruncateAndAppend(this string value, int maxChars, string append)
+        /// <summary>
+        /// Truncates a string safely to the specified number of characters and appends the specified string to the end. If the string is shorter than maxChars then just the string is returned with no appendage.
+        /// </summary>
+        /// <param name="s">The string to truncate and append</param>
+        /// <param name="maxChars">How many chars to truncate from the left</param>
+        /// <param name="append">A string to append to the end if the input string is longer than the truncated value</param>
+        /// <returns>The truncated string with optional appendage</returns>
+        public static string TruncateAndAppend(this string s, int maxChars, string append = "")
         {
-            return string.IsNullOrWhiteSpace(value) ? "" : (value.Length <= maxChars ? value : value.Substring(0, maxChars) + append);
+            return string.IsNullOrWhiteSpace(s) ? "" : (s.Length <= maxChars ? s : s.Substring(0, maxChars) + append);
         }
 
         public static string ToTitleCase(this string value)
@@ -380,6 +400,25 @@ namespace ExtendFurther
             catch { return default(T); }
         }
 
+        /// <summary>
+        /// Returns the string as a byte array
+        /// </summary>
+        /// <param name="s">The input string</param>
+        /// <returns>The string as an array of bytes</returns>
+        public static byte[] ToBytes(this string s)
+        {
+            return s.Exists() ? Encoding.ASCII.GetBytes(s) : new byte[0];
+        }
+
+        /// <summary>
+        /// Returns the string's hexadecimal representation
+        /// </summary>
+        /// <param name="s">The input string</param>
+        /// <returns>The hexadecimal representation of the string without hyphens in lowercase</returns>
+        public static string ToHex(this string s)
+        {
+            return s.Exists() ? BitConverter.ToString(s.ToBytes()).Replace("-", "").ToLower() : "";
+        }
 
     }
 }
