@@ -121,9 +121,15 @@ namespace ExtendFurther
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
-        public static string NoSpace(this string s)
+        /// <summary>
+        /// Returns the string with spaces replaced for emptystring (default) or optional replacement string t
+        /// </summary>
+        /// <param name="s">The input string</param>
+        /// <param name="t">The optional replacement string for any spaces</param>
+        /// <returns></returns>
+        public static string NoSpace(this string s, string t = "")
         {
-            return !string.IsNullOrEmpty(s) ? s.Replace(" ", "") : string.Empty;
+            return !string.IsNullOrEmpty(s) ? s.Replace(" ", t) : string.Empty;
         }
 
         public static bool IsGuid(this string s)

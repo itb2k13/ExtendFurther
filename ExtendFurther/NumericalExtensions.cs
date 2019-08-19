@@ -4,6 +4,16 @@ namespace ExtendFurther
 {
     public static class NumericalExtensions
     {
+        /// <summary>
+        /// Returns the absolute value of the input value
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static int Abs(this int i)
+        {
+            return Math.Abs(i);
+        }
+
         public static decimal Round0Dp(this decimal d)
         {
             return decimal.Parse(Math.Round(d, 1).ToString("N0"));

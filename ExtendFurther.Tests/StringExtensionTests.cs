@@ -95,6 +95,7 @@ namespace ExtendFurther.Tests
         [TestCase("", "", false)]
         [TestCase(null, null, false)]
         [TestCase(null, "abc", false)]
+        [TestCase("abc", null, false)]
         [TestCase(" ", " ", true)]
         [TestCase("abc", "abc", true)]
         [TestCase("ABC", "abc", true)]
@@ -134,14 +135,16 @@ namespace ExtendFurther.Tests
 
 
         [Test]
-        [TestCase("", "")]
-        [TestCase(null, "")]
-        [TestCase("abc", "abc")]
-        [TestCase("a b c", "abc")]
-        [TestCase("A BC", "ABC")]
-        public void Extension_StringExtension_NoSpace(string s, string expectedResult)
+        [TestCase("", "", "")]
+        [TestCase(null, "", "")]
+        [TestCase("abc", "", "abc")]
+        [TestCase("a b c", "", "abc")]
+        [TestCase("A BC", "", "ABC")]
+        [TestCase("A BC", "_", "A_BC")]
+        [TestCase("A B C", "&", "A&B&C")]
+        public void Extension_StringExtension_NoSpace(string s, string t, string expectedResult)
         {
-            Assert.That(s.NoSpace(), Is.EqualTo(expectedResult));
+            Assert.That(s.NoSpace(t), Is.EqualTo(expectedResult));
         }
 
 

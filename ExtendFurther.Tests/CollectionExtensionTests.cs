@@ -1,8 +1,15 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ExtendFurther.Tests
 {
+    class TestModel
+    {
+        public int Prop1 { get; set; }
+        public string Prop2 { get; set; }
+    }
+
     class CollectionExtensionTests
     {
         [Test]
@@ -30,6 +37,8 @@ namespace ExtendFurther.Tests
         }
 
         [Test]
+        [TestCase(0, 0)]
+        [TestCase(-10, -45)]
         [TestCase(10, 45)]
         [TestCase(500, 124750)]
         public void Extension_ListExtension_Enumerator(int i, int sum)
@@ -37,7 +46,7 @@ namespace ExtendFurther.Tests
             var en = i.Enumerator();
 
             Assert.That(en.Sum(), Is.EqualTo(sum));
-            Assert.That(en.Count(), Is.EqualTo(i));
+            Assert.That(en.Count(), Is.EqualTo(i.Abs()));
 
             for (int j = i - 1; j >= 0; j--)
             {
@@ -71,6 +80,29 @@ namespace ExtendFurther.Tests
         public void Extension_ListExtension_SafeSplit(string[] values, string separator, int index, string[] expectedValue)
         {
             Assert.That(values.SafeSplit(separator, index), Is.EqualTo(expectedValue));
+        }
+
+
+        [Test]
+        public void Extension_CollectionExtension_MaxBy()
+        {
+            var a = new TestModel { Prop1 = 1, Prop2 = "xyz" };
+            var b = new TestModel { Prop1 = 2, Prop2 = "abc" };
+            var c = new List<TestModel> { a, b };
+
+            Assert.That(c.MaxBy(x => x.Prop1), Is.SameAs(b));
+            Assert.That(c.MaxBy(x => x.Prop2), Is.SameAs(a));
+        }
+
+        [Test]
+        public void Extension_CollectionExtension_MinBy()
+        {
+            var a = new TestModel { Prop1 = 1, Prop2 = "xyz" };
+            var b = new TestModel { Prop1 = 2, Prop2 = "abc" };
+            var c = new List<TestModel> { a, b };
+
+            Assert.That(c.MinBy(x => x.Prop1), Is.SameAs(a));
+            Assert.That(c.MinBy(x => x.Prop2), Is.SameAs(b));
         }
 
     }

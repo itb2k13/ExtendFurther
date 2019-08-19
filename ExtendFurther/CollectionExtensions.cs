@@ -10,13 +10,14 @@ namespace ExtendFurther
     /// </summary>
     public static class CollectionExtensions
     {
+
         /// <summary>
-        /// 
+        /// Returns the element in the collection with the Max() of the property specified
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="R"></typeparam>
-        /// <param name="en"></param>
-        /// <param name="evaluate"></param>
+        /// <param name="en">The enumerable collection</param>
+        /// <param name="evaluate">The function with which to evaluate i.e. the property to find the Max() of</param>
         /// <returns></returns>
         public static T MaxBy<T, R>(this IEnumerable<T> en, Func<T, R> evaluate) where R : IComparable<R>
         {
