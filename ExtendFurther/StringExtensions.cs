@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -418,6 +419,55 @@ namespace ExtendFurther
         public static string ToHex(this string s)
         {
             return s.Exists() ? BitConverter.ToString(s.ToBytes()).Replace("-", "").ToLower() : "";
+        }
+
+        /// <summary>
+        /// Trims the specified string from the end of the input string
+        /// </summary>
+        /// <param name="input">The input string to trim</param>
+        /// <param name="suffixToRemove">The string to remove from the end of the input</param>
+        /// <returns>A new string with the specified string removed from the end</returns>
+        public static string TrimEndOf(this string input, string suffixToRemove)
+        {
+            if (!input.Exists() || !suffixToRemove.Exists())
+                return string.Empty;
+
+            int pos = input.LastIndexOf(suffixToRemove, StringComparison.CurrentCultureIgnoreCase);
+
+            if (pos == (input.Length - suffixToRemove.Length))
+                return input.Substring(0, pos);
+
+            return input;
+        }
+
+        /// <summary>
+        /// Returns the index of any of the characters in the specified string ignoring matches in the first word (split by space) (case insensitive).
+        /// </summary>
+        /// <param name="s">The string to search</param>
+        /// <param name="indexOf">The integer position of the search or -1 if not found</param>
+        /// <returns>The position of the search string ignoring matches found in the first word</returns>
+        public static int IndexOfAnyAfterFirstWord(this string s, string indexOf)
+        {
+            if (!s.Exists())
+                return -1;
+
+            s = s.Trim();
+
+            if (s.IndexOf(" ") > 0)
+                return s.ToLower().IndexOfAny(indexOf.ToLower().ToCharArray(), s.IndexOf(" "));
+            else
+                return -1;
+        }
+
+
+        /// <summary>
+        /// Returns the string with HTML decoding
+        /// </summary>
+        /// <param name="s">The input string to decode</param>
+        /// <returns>A new string with any HTML characters decoded</returns>
+        public static string HtmlDecode(this string s)
+        {
+            return WebUtility.HtmlDecode(s);
         }
 
     }

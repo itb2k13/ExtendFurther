@@ -380,6 +380,52 @@ namespace ExtendFurther.Tests
         {
             Assert.That(s.ToBytes(), Is.EqualTo(expectedResult));
         }
+
+
+        [Test]
+        [TestCase(null, null, "")]
+        [TestCase("", "", "")]
+        [TestCase("abc", "abc", "")]
+        [TestCase("abc123", "123", "abc")]
+        [TestCase("abc", "xyz", "abc")]
+        public void Extensions_TrimEndOf(string s, string trim, string expectedString)
+        {
+            Assert.AreEqual(expectedString, s.TrimEndOf(trim));
+        }
+
+
+        [Test]
+        [TestCase(null, null, -1)]
+        [TestCase("", "", -1)]
+        [TestCase(" ", "", -1)]
+        [TestCase("123", "0123456789", -1)]
+        [TestCase("abc 123", "0123456789", 4)]
+        [TestCase(" abc 123", "0123456789", 4)]
+        [TestCase("K-9 abc 123", "0123456789", 8)]
+        [TestCase(" K-9 abc 123", "0123456789", 8)]
+        [TestCase(" K-9 abc 123 xyz", "xy", 12)]
+        [TestCase("K-9 abc 123 xyz", "XYZ", 12)]
+        [TestCase("K-9 abc 123 xyz", "zyx", 12)]
+        [TestCase("K9Z abc 123 xyz", "zy", 13)]
+        public void Extensions_IndexOfAnyAfterFirstWord(string s, string indexOf, int expectedResult)
+        {
+
+            Assert.AreEqual(expectedResult, s.IndexOfAnyAfterFirstWord(indexOf));
+
+        }
+
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase(" ", " ")]
+        [TestCase("123 &amp; 456", "123 & 456")]
+        public void Extensions_HtmlDecode(string s, string expectedString)
+        {
+
+            Assert.AreEqual(expectedString, s.HtmlDecode());
+
+        }
     }
 }
 
