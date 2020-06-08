@@ -89,6 +89,16 @@ namespace ExtendFurther
             return s != null && t.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase));
         }
 
+        public static bool IsIn(this string s, params string[] t)
+        {
+            return s != null && t.Count() > 0 && t.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public static bool IsIn(this string s, string t, string u)
+        {
+            return s != null && t != null && (t.Split(u)?.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase)) ?? false);
+        }
+
         public static bool IsPartOfAny(this string s, params string[] t)
         {
             return s.Exists() && t.Any(x => x.ContainsString(s));

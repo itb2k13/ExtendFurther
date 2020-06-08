@@ -352,7 +352,7 @@ namespace ExtendFurther.Tests
         [TestCase("", new string[0], false)]
         [TestCase("", null, false)]
         [TestCase(null, null, false)]
-        [TestCase("abc", new string[2] {"ABC","def" }, true)]
+        [TestCase("abc", new string[2] { "ABC", "def" }, true)]
         [TestCase("abc", new string[2] { "xABCy", "def" }, false)]
         [TestCase("ABC", new string[2] { "abc def", "def" }, false)]
         [TestCase("DEF", new string[2] { "abc def", "def" }, true)]
@@ -388,7 +388,7 @@ namespace ExtendFurther.Tests
         [TestCase("abc", "abc", "")]
         [TestCase("abc123", "123", "abc")]
         [TestCase("abc", "xyz", "abc")]
-        public void Extensions_TrimEndOf(string s, string trim, string expectedString)
+        public void Extensions_StringExtension_TrimEndOf(string s, string trim, string expectedString)
         {
             Assert.AreEqual(expectedString, s.TrimEndOf(trim));
         }
@@ -407,11 +407,9 @@ namespace ExtendFurther.Tests
         [TestCase("K-9 abc 123 xyz", "XYZ", 12)]
         [TestCase("K-9 abc 123 xyz", "zyx", 12)]
         [TestCase("K9Z abc 123 xyz", "zy", 13)]
-        public void Extensions_IndexOfAnyAfterFirstWord(string s, string indexOf, int expectedResult)
+        public void Extensions_StringExtension_IndexOfAnyAfterFirstWord(string s, string indexOf, int expectedResult)
         {
-
             Assert.AreEqual(expectedResult, s.IndexOfAnyAfterFirstWord(indexOf));
-
         }
 
 
@@ -420,13 +418,43 @@ namespace ExtendFurther.Tests
         [TestCase("", "")]
         [TestCase(" ", " ")]
         [TestCase("123 &amp; 456", "123 & 456")]
-        public void Extensions_HtmlDecode(string s, string expectedString)
+        public void Extensions_StringExtension_HtmlDecode(string s, string expectedString)
         {
-
             Assert.AreEqual(expectedString, s.HtmlDecode());
+        }
 
+        [Test]
+        [TestCase(null, null, false)]
+        [TestCase("", "", true)]
+        [TestCase(" ", " ", true)]
+        [TestCase("123 &amp; 456", "456", false)]
+        [TestCase("def", "DEF", true)]
+        public void Extensions_StringExtension_IsIn(string s, string t, bool expectedResult)
+        {
+            Assert.That(t.IsIn(s), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase(null, false)]
+        [TestCase("", false)]
+        [TestCase(" ", false)]
+        [TestCase("123", true)]
+        [TestCase("def", true)]
+        public void Extensions_StringExtension_IsIn_Params(string s, bool expectedResult)
+        {
+            Assert.That(s.IsIn("abc", "def", "hij", "123"), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase(null, null, null, false)]
+        [TestCase("", "", "", false)]
+        [TestCase(" ", " ", " ", false)]
+        [TestCase("123 &amp; 456", "456", ";", false)]
+        [TestCase("def&hij", "DEF", "&", true)]
+        [TestCase("8.8.8.8", "8.8.8.8", ";", true)]
+        public void Extensions_StringExtension_IsIn_SplitBy(string s, string t, string u, bool expectedResult)
+        {
+            Assert.That(t.IsIn(s, u), Is.EqualTo(expectedResult));
         }
     }
 }
-
-
