@@ -224,7 +224,7 @@ namespace ExtendFurther.Tests
         [TestCase("a;BC", ";", new string[] { "a", "BC" })]
         public void Extension_StringExtension_Split(string s, string t, string[] expectedResult)
         {
-            Assert.That(s.Split(t), Is.EqualTo(expectedResult));
+            Assert.That(s.SplitBy(t), Is.EqualTo(expectedResult));
         }
 
 

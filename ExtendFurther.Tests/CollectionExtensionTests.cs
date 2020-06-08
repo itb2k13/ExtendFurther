@@ -10,7 +10,8 @@ namespace ExtendFurther.Tests
         public string Prop2 { get; set; }
     }
 
-    class CollectionExtensionTests
+    [TestFixture]
+    public class CollectionExtensionTests
     {
         [Test]
         [TestCase(new string[] { "", "" }, false)]

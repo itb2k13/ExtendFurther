@@ -96,7 +96,7 @@ namespace ExtendFurther
 
         public static bool IsIn(this string s, string t, string u)
         {
-            return s != null && t != null && (t.Split(u)?.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase)) ?? false);
+            return s != null && t != null && (t.SplitBy(u)?.Any(x => x.Equals(s, StringComparison.InvariantCultureIgnoreCase)) ?? false);
         }
 
         public static bool IsPartOfAny(this string s, params string[] t)
@@ -313,9 +313,9 @@ namespace ExtendFurther
         /// <param name="s">The string to split</param>
         /// <param name="t">The string to tokenize by</param>
         /// <returns>A collection of strings</returns>
-        public static IEnumerable<string> Split(this string s, string t)
+        public static IEnumerable<string> SplitBy(this string s, string t)
         {
-            return !string.IsNullOrEmpty(s) ? s.Split(new string[] { t }, StringSplitOptions.None) : new string[0];
+            return !string.IsNullOrEmpty(s) ? s.Split(new string[] { t }, StringSplitOptions.RemoveEmptyEntries) : new string[0];
         }
 
 

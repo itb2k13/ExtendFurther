@@ -1,15 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendFurther", "ExtendFurther\ExtendFurther.csproj", "{41614B50-355D-4025-90EB-B461316BEF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtendFurther", "ExtendFurther\ExtendFurther.csproj", "{41614B50-355D-4025-90EB-B461316BEF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendFurther.Tests", "ExtendFurther.Tests\ExtendFurther.Tests.csproj", "{7B5784A5-96BF-4953-947D-4B3A594D468F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtendFurther.Tests", "ExtendFurther.Tests\ExtendFurther.Tests.csproj", "{7B5784A5-96BF-4953-947D-4B3A594D468F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BEB8D35-763A-4A94-8C12-4F44F50FB0A4}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		ExtendFurther\ico\bridge-512.png = ExtendFurther\ico\bridge-512.png
 		LICENSE = LICENSE
 		nugetpack.bat = nugetpack.bat
 		Package.nuspec = Package.nuspec
@@ -33,5 +34,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A0DD010-A02A-4413-8733-ED6E75B06805}
 	EndGlobalSection
 EndGlobal
